@@ -20,15 +20,17 @@ class MetamaterialSynth:
     Base class for simulating metamaterial resonance and stability.
 
     Attributes:
-        frequency (float): Operating frequency in GHz.
+        frequency (float): Operating frequency in GHz or THz (scaled).
+        is_thz (bool): Flag for Terahertz-scale operations.
         material (str): Synthetic material substrate (e.g., 'Gold').
         lattice_constant (float): Dimensional scaling factor (a).
         permittivity (float): Relative permittivity (epsilon).
         permeability (float): Relative permeability (mu).
     """
 
-    def __init__(self, frequency: float, material: str, lattice_constant: float, permittivity: float, permeability: float):
+    def __init__(self, frequency: float, material: str, lattice_constant: float, permittivity: float, permeability: float, is_thz: bool = False):
         self.frequency = frequency
+        self.is_thz = is_thz
         self.material = material
         self.lattice_constant = lattice_constant
         self.permittivity = permittivity
@@ -55,8 +57,9 @@ class MetamaterialSynth:
             float: Reinforced stability coefficient.
         """
         # BRR logic: tau_reinforced = tau * (1 + factor * log10(frequency))
-        # This scales reinforcement with frequency to match instability growth.
-        reinforcement = 1 + (factor * math.log10(self.frequency))
+        # For THz scale, frequency is shifted by 10^3 for normalization.
+        freq_log = math.log10(self.frequency * 1000) if self.is_thz else math.log10(self.frequency)
+        reinforcement = 1 + (factor * freq_log)
         return tau * reinforcement
 
     def calculate_phi_spiral_resonance(self, phi: float, iterations: int = 1) -> float:
@@ -85,12 +88,19 @@ def run_full_manifold_audit():
     gamma = MetamaterialSynth(30.0, "Copper", 1.5, 3.0, 2.2)
     t_gamma_base = gamma.calculate_ttt7_stability()
     t_gamma_reinforced = gamma.apply_bulk_reinforcement(t_gamma_base)
+    
+    # 4. Delta (Target: 5.0 THz - Phase 3 Delta Lattice)
+    # Lambda_THz = 30e-6 m, RSF = 166.67
+    delta = MetamaterialSynth(5.0, "Graphene-Enhanced", 30e-6, 1.1, 1.05, is_thz=True)
+    t_delta_base = delta.calculate_ttt7_stability()
+    t_delta_reinforced = delta.apply_bulk_reinforcement(t_delta_base, factor=2.1) # Higher factor for THz
 
-    print("--- NRC PHASE 2: FINAL STABILITY MANIFOLD REPORT ---")
+    print("--- NRC PHASE 3: THz RESONANCE MANIFOLD REPORT ---")
     print(f"Lattice Alpha (10 GHz): τ = {t_alpha:.6f}")
-    print(f"Lattice Beta  (20 GHz): τ = {t_beta:.6f} (Delta: {t_beta-t_alpha:.6f})")
-    print(f"Lattice Gamma (30 GHz): τ_base = {t_gamma_base:.6f}")
-    print(f"Lattice Gamma (30 GHz): τ_reinforced = {t_gamma_reinforced:.6f} [BRR ACTIVE]")
+    print(f"Lattice Beta  (20 GHz): τ = {t_beta:.6f}")
+    print(f"Lattice Gamma (30 GHz): τ_reinforced = {t_gamma_reinforced:.6f}")
+    print(f"Lattice Delta (5.0 THz): τ_base = {t_delta_base:.6f}")
+    print(f"Lattice Delta (5.0 THz): τ_reinforced = {t_delta_reinforced:.6f} [PHASE 3 ACTIVE]")
     
     print("\nRESONANCE VERIFICATION:")
     # Harmonic progression
@@ -101,6 +111,8 @@ def run_full_manifold_audit():
     print(f"Beta  φ-State: {phi:.6f}")
     phi = gamma.calculate_phi_spiral_resonance(phi, iterations=3)
     print(f"Gamma φ-State: {phi:.6f}")
+    phi = delta.calculate_phi_spiral_resonance(phi, iterations=5) # Deep spiral for THz
+    print(f"Delta φ-State: {phi:.6f}")
     print("-----------------------------------------------------")
 
 if __name__ == "__main__":
