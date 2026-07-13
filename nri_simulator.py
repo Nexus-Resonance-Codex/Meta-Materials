@@ -12,7 +12,7 @@ Mathematical Foundations:
 """
 
 import math
-from typing import Tuple
+
 
 class NRISimulator:
     """
@@ -65,23 +65,42 @@ def analyze_electromagnetic_performance():
 
     # Manifold Baseline (from Step 3)
     targets = [
-        {"name": "Meta-Lattice-Alpha", "freq": 10.0, "eps": -2.0, "mu": -1.5, "tau": 0.300000},
-        {"name": "Meta-Lattice-Beta",  "freq": 20.0, "eps": -2.5, "mu": -1.8, "tau": 0.150731},
-        {"name": "Meta-Lattice-Gamma", "freq": 30.0, "eps": -3.0, "mu": -2.2, "tau": 0.215567},
+        {
+            "name": "Meta-Lattice-Alpha",
+            "freq": 10.0,
+            "eps": -2.0,
+            "mu": -1.5,
+            "tau": 0.300000,
+        },
+        {
+            "name": "Meta-Lattice-Beta",
+            "freq": 20.0,
+            "eps": -2.5,
+            "mu": -1.8,
+            "tau": 0.150731,
+        },
+        {
+            "name": "Meta-Lattice-Gamma",
+            "freq": 30.0,
+            "eps": -3.0,
+            "mu": -2.2,
+            "tau": 0.215567,
+        },
     ]
 
     print("--- NRC PHASE 2: ELECTROMAGNETIC PERFORMANCE REPORT ---")
     for t in targets:
         n = simulator.calculate_refractive_index(t["eps"], t["mu"])
         a = simulator.simulate_perfect_absorption(t["freq"], t["tau"])
-        
+
         status = "OPTIMAL" if a > 0.35 else "STABLE"
-        
+
         print(f"Target: {t['name']} ({t['freq']} GHz)")
         print(f"  Refractive Index (n): {n:.6f} [NRI ACTIVE]")
         print(f"  Absorption Efficiency: {a:.6f}")
         print(f"  Performance Status: {status}")
         print("-" * 55)
+
 
 if __name__ == "__main__":
     analyze_electromagnetic_performance()
