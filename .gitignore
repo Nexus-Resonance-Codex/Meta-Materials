@@ -1,46 +1,26 @@
+# Environments
+nrc_env/
+venv/
+.env
+
 # Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+*.pyc
+*.pyo
+*.pyd
 
-# Environment
-.env
-.venv
-venv/
-ENV/
-env.bak
-venv.bak
+# LaTeX build artifacts
+papers/*.aux
+papers/*.log
+papers/*.fdb_latexmk
+papers/*.fls
+papers/*.synctex.gz
+papers/*.out
+# Note: Keeping PDFs out of gitignore per user request to have live PDFs (though the GH action can handle it, we'll let GH actions upload them as artifacts instead)
+papers/*.pdf
 
-# Jupyter
-.ipynb_checkpoints
+# Fabrication Outputs
+fabrication_outputs/
 
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Project specific
-*.log
-*.tmp
-data/
-outputs/
+# OS Files
+.DS_Store
