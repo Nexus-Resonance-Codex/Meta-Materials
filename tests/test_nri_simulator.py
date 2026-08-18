@@ -1,5 +1,5 @@
-import pytest
 from nri_simulator import NRISimulator
+
 
 def test_refractive_index():
     sim = NRISimulator()

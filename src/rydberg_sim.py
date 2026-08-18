@@ -5,7 +5,8 @@ Standard: God-tier / TTT-7 Stable (Digital Root 7)
 """
 
 import math
-from scipy.constants import hbar, eV
+
+from scipy.constants import eV, hbar
 
 
 class RydbergSimulator:

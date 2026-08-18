@@ -5,10 +5,11 @@ High-performance, interactive web dashboard using FastAPI and Streamlit/Plotly
 for visualizing 3D meta-material lattices, stress-strain fields, and resonance waves.
 """
 
-import streamlit as st
-import plotly.graph_objects as go
 import numpy as np
-from universal_engine import ElectromagneticMetamaterial, AcousticMetamaterial
+import plotly.graph_objects as go
+import streamlit as st
+
+from universal_engine import AcousticMetamaterial, ElectromagneticMetamaterial
 
 
 def generate_lattice_visualization(grid_size: int = 3):

@@ -1,5 +1,6 @@
 import pytest
-from ai_optimizer import MetaMaterialDatabase, MultiPhysicsCoupler, AIOptimizer
+
+from ai_optimizer import AIOptimizer, MetaMaterialDatabase, MultiPhysicsCoupler
 
 
 def test_database():

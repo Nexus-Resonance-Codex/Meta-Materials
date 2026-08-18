@@ -1,5 +1,5 @@
-import pytest
 from metamaterial_synth import MetamaterialSynth
+
 
 def test_ttt7_stability():
     # Alpha Baseline
