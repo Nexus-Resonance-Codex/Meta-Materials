@@ -1,0 +1,15 @@
+numpy>=1.21.0
+scipy>=1.7.0
+fastapi>=0.95.0
+uvicorn>=0.22.0
+plotly>=5.14.0
+trimesh>=3.21.0
+streamlit>=1.22.0
+dash>=2.9.0
+pyvista>=0.39.0
+
+[dev]
+pytest>=7.3.1
+black>=23.3.0
+ruff>=0.0.267
+flake8>=6.0.0

@@ -1,5 +1,5 @@
-import pytest
 from coherence_filter import CoherenceFilter
+
 
 def test_optimize_coherence():
     filter_cf = CoherenceFilter()

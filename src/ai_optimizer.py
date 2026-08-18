@@ -6,7 +6,9 @@ and couples thermal-mechanical-electromagnetic properties concurrently.
 """
 
 import math
+
 from scipy.optimize import minimize
+
 from universal_engine import ElectromagneticMetamaterial
 
 

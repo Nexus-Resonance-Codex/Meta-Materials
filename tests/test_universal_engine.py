@@ -1,7 +1,7 @@
 from universal_engine import (
+    AcousticMetamaterial,
     BaseMetamaterial,
     ElectromagneticMetamaterial,
-    AcousticMetamaterial,
     MechanicalMetamaterial,
     OpticalMetamaterial,
 )

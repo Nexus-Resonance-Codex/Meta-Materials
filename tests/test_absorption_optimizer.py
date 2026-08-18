@@ -1,7 +1,7 @@
-import pytest
+from absorption_optimizer import AbsorptionOptimizer
 from metamaterial_synth import MetamaterialSynth
 from nri_simulator import NRISimulator
-from absorption_optimizer import AbsorptionOptimizer
+
 
 def test_absorption_optimization():
     synth = MetamaterialSynth(30.0, "Copper", 1.5, 3.0, 2.2)

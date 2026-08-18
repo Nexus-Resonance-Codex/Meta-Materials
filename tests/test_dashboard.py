@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+
 from dashboard import generate_lattice_visualization, generate_resonance_wave
 
 

@@ -1,5 +1,5 @@
-import pytest
 from rydberg_sim import RydbergSimulator
+
 
 def test_rydberg_simulation():
     sim = RydbergSimulator(50)
