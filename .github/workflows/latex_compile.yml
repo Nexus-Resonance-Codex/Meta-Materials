@@ -4,16 +4,19 @@ on:
   push:
     paths:
       - 'papers/**.tex'
+      - '.github/workflows/latex_compile.yml'
   pull_request:
     paths:
       - 'papers/**.tex'
+      - '.github/workflows/latex_compile.yml'
+  workflow_dispatch:
 
 jobs:
   build_latex:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Compile LaTeX documents
         uses: xu-cheng/latex-action@v3
@@ -26,7 +29,7 @@ jobs:
           args: -pdf -interaction=nonstopmode -file-line-error
 
       - name: Upload PDF artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: compiled-papers
           path: papers/*.pdf
