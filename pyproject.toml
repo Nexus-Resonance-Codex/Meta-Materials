@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nexus-resonance-codex"
-version = "1.0.0"
+version = "0.1.0"
 description = "Professional Meta-Materials Synthesis and Analysis Framework (NRC)"
 authors = [
     {name = "James Paul Trageser", email = "NexusResonanceCodex@gmail.com"}
